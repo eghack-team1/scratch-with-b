@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/eghack-team1/scratch-with-b/issues"
   },
-  "homepage": "https://github.com/eghack-team1/scratch-with-b#readme"
+  "homepage": "https://github.com/eghack-team1/scratch-with-b#readme",
+  "devDependencies": {
+    "nodemailer": "^4.1.0"
+  }
 }
