@@ -6,8 +6,89 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src="./js/bundle.js" ></script>
   <title>Document</title>
+  <style>
+  #target{
+    width:90%;
+    height:80vh;
+    background-color: #eee;
+  }
+  #workspace{
+    width:90%;
+    height:20vh;
+  }
+  .scratch-block-if-wrapper,.scratch-block-for-wrapper{
+    min-width:120px;
+    max-width: 120px;
+    position: relative;
+    border-bottom: 32px solid #EAB400;
+    border-left: 16px solid #EAB400;
+    box-shadow: -1px -1px 1px 1px rgba(0,0,0,0.4) inset;
+  }
+  .scratch-block-if-statement,.scratch-block-for-statement{
+    display: inline-block;
+    min-width:120px;
+    width:auto;
+    position: relative;
+    background-color: #EAB400;
+  }
+  .scratch-block-variable{
+    border:1px solid black;
+  }
+  .scratch-block-if-statement-lhs,.scratch-block-if-statement-rhs,.scratch-block-for-statement-loop-count{
+    min-width:32px;
+    display: inline-block;
+    background-color:white;
+    box-shadow: -1px -1px 1px 1px rgba(0,0,0,0.4) inset;
+    border-radius: 10px;
+  }
+  .scratch-block-if-commands,.scratch-block-for-commands{
+    min-height:60px;
+    height:auto;
+  }
+  input[type="number"]{
+    min-width:32px;
+    width:2em;
+    appearance:none;
+    border:none;
+    display: inline!important;
+    background-color:white;
+    box-shadow: -1px -1px 1px 1px rgba(0,0,0,0.4) inset;
+    border-radius: 10px;
+  }
+  </style>
+  <script>
+
+  </script>
 </head>
 <body>
+  <div data-scratch-type="box" draggable="true" id="target">
+    <div draggable="true" data-scratch-type="statement-block-if" data-scratch="if-wrapper" class="scratch-block-if-wrapper">
+      <span data-scratch="if-statement" class="scratch-block-if-statement">もし<span data-scratch="if-statement-lhs" data-scratch-type="box" draggable="true" class="scratch-block-if-statement-lhs">&nbsp;</span>が<span data-scratch="if-statement-rhs" draggable="true" data-scratch-type="box" class="scratch-block-if-statement-lhs">&nbsp;</span><select name="" id="">
+        <option value="">と等しい</option>
+        <option value="">より大きい</option>
+        <option value="">より小さい</option>
+      </select>なら</span>
+      <div data-scratch="if-comands-wrapper" draggable="true" data-scratch-type="command-wrapper-block" class="scratch-block-if-commands"></div>
+    </div>
+  </div>
+  <div data-scratch-type="workspace" id="workspace">
+    <ul data-scratch="variable-list" data-scratch-type="value-block-variable">
+      <li draggable="true" data-scratch-type="variable">user</li>
+    </ul>
+    <div draggable="true" data-scratch-type="statement-block-if" data-scratch="if-wrapper" class="scratch-block-if-wrapper">
+      <span data-scratch="if-statement" class="scratch-block-if-statement">もし<span data-scratch="if-statement-lhs" data-scratch-type="box" draggable="true" class="scratch-block-if-statement-lhs">&nbsp;</span>が<span data-scratch="if-statement-rhs" draggable="true" data-scratch-type="box" class="scratch-block-if-statement-lhs">&nbsp;</span>なら</span>
+      <div data-scratch="if-comands-wrapper" draggable="true" data-scratch-type="command-wrapper-block" class="scratch-block-if-commands">
+      </div>
+    </div>
+    <div draggable="true" data-scratch-type="statement-block-for" data-scratch="for-wrapper" class="scratch-block-for-wrapper">
+      <span data-scratch="for-statement" class="scratch-block-for-statement"><input type="number" min="0" id="">回繰り返す</span>
+      <div data-scratch="for-comands-wrapper" class="scratch-block-for-commands">
+        <div draggable="true" class="scratch-block-command-child"></div>
+      </div>
+    </div>
+  <div draggable="true" data-scratch-type="command-block">
 
+  </div>
+  </div>
 </body>
 </html>
