@@ -65,11 +65,55 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-var hoge = 'hello world';
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_ScratchBlockController__ = __webpack_require__(1);
 
-console.log(hoge);
+
+window.onload = ()=>{
+  let sbctrl = new __WEBPACK_IMPORTED_MODULE_0__modules_ScratchBlockController__["a" /* default */];
+  Array.prototype.forEach.call(sbctrl.items,(item)=>{
+      item.addEventListener('dragstart',sbctrl.dragStartHandler);
+      item.addEventListener('dragover',sbctrl.dragOverHandler);
+      item.addEventListener('drop',sbctrl.dropHandler);
+  });
+}
+
+
+/***/ }),
+/* 1 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* unused harmony export draggingDOM */
+var draggingDOM;
+class ScratchBlockController {
+  constructor(){
+    this.items = document.querySelectorAll('[draggable="true"]');
+  }
+
+  dragStartHandler(event) {
+    let dragElement = event.target;
+    draggingDOM = dragElement.cloneNode(true);
+  }
+
+  dragOverHandler(event) {
+      event.preventDefault();
+      event.dataTransfer.dropEffect = 'move';
+
+  }
+
+  dropHandler(event) {
+      let dropElement = event.target;
+      event.stopPropagation();
+      console.error(draggingDOM);
+      dropElement.appendChild(draggingDOM);
+  }
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = ScratchBlockController;
+
 
 
 /***/ })

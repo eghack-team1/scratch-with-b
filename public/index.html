@@ -6,8 +6,40 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src="./js/bundle.js" ></script>
   <title>Document</title>
+  <style>
+  #target{
+    width:90%;
+    height:90vh;
+    background-color: #eee;
+  }
+  .scratch-block-if-wrapper{
+    border-top: 32px solid red;
+    border-bottom: 32px solid red;
+    border-left: 5px solid red;
+  }
+  .scratch-block-variable{
+    border:1px solid black;
+  }
+  .scratch-block-if-statement-lhs,.scratch-block-if-statement-rhs{
+    min-width:32px;
+    background-color:green;
+  }
+  </style>
+  <script>
+
+  </script>
 </head>
 <body>
-
+  <div id="target">
+    <div data-scratch="if-wrapper" class="scratch-block-if-wrapper">もし
+      <span data-scratch="if-statement" class="scratch-block-if-statement"><span data-scratch="if-statement-lhs" draggable="true" class="scratch-block-if-statement-lhs">&nbsp;</span>が<span data-scratch="if-statement-rhs" draggable="true" class="scratch-block-if-statement-lhs">&nbsp;</span>なら</span>
+      <ul data-scratch="if-comands-wrapper" class="scratch-block-if-commands">
+        <li draggable="true" class="scratch-block-if-command-child"></li>
+      </ul>
+    </div>
+  </div>
+  <span data-scratch="variable-list">
+    <span draggable="true" data-scratch="variable-child">user</span>
+  </span>
 </body>
 </html>
