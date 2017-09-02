@@ -2,14 +2,14 @@
 
 //var code = ["___age___","___ShopName___","___Name___","___ID___"];
 
-
-var users =[
+//ユーザーデータ仮置き
+export var users =[
         {
           id:1,
-          name:"Sudo",
+          Name:"Sudo",
           age:21,
           sex:"man",
-          shopname:"ion"
+          ShopName:"ion"
         },
         {
           id:2,
@@ -20,21 +20,12 @@ var users =[
         }
     ];
 
-var checktext = "___Name___のたこてあき___age___あああ___ShopName___";
+//テキスト置換操作 関数としてはテキストとuserid必要？
 
-for(var i = 0; i < 3; i++){
-
-  var result = checktext.match(/(___.*?___)/);
-
-  console.log(result);
-  if(result[0] === "___Name___"){
-    checktext =checktext.replace(/___Name___/,users[0].name);
-    console.log(checktext);
-  }else if(result[0] === "___age___"){
-    checktext =checktext.replace(/___age___/,users[0].age);
-    console.log(checktext);
-  }else if(result[0] === "___ShopName___"){
-    checktext =checktext.replace(/___ShopName___/,users[0].shopname);
-    console.log(checktext);
+export default function replace_sentence(text){
+  let checktext = text;
+  for(let prop in users[0]){
+    checktext = checktext.replace(new RegExp(`___${prop}___`),users[0][`${prop}`]);
   }
+  return checktext;
 }
