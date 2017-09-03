@@ -76,23 +76,24 @@
   }
   </style>
   <script>
-
+    var _$_body_$_ = "";
+    var _$_subject_$_ = "";
   </script>
 </head>
 <body>
   <div data-scratch-type="box" draggable="true" id="target">
     <div draggable="true" data-scratch-type="statement-block-if" data-scratch="if-wrapper" class="scratch-block-if-wrapper">
       <span data-scratch="if-statement" data-scratch-type="if-expression" class="scratch-block-if-statement">もし<span data-scratch="if-statement-lhs" data-scratch-type="if-expression-lhs" draggable="true" class="scratch-block-if-statement-lhs">    <select draggable="true" data-scratch="variable-list" data-scratch-type="value-block-variable">
-            <option draggable="true" data-scratch-type="variable">名前</option>
-            <option draggable="true" data-scratch-type="variable">性別</option>
-            <option draggable="true" data-scratch-type="variable">会社フラグ</option>
-            <option draggable="true" data-scratch-type="variable">年齢</option>
+            <option draggable="true" value="sudou" data-scratch-type="variable">名前</option>
+            <option draggable="true" value="male" data-scratch-type="variable">性別</option>
+            <option draggable="true" value="1" data-scratch-type="variable">会社フラグ</option>
+            <option draggable="true" value="21" data-scratch-type="variable">年齢</option>
           </select></span>が<span data-scratch="if-statement-rhs" draggable="true" data-scratch-type="if-expression-rhs" class="scratch-block-if-statement-lhs"><input type="text" name="" id=""></span>
           <select name="" id="" data-scratch-type="if-exprssion-operator">
-            <option>と等しい</option>
-            <option>と等しくない</option>
-            <option>より大きい</option>
-            <option>より小さい</option>
+            <option value="==">と等しい</option>
+            <option value="!=">と等しくない</option>
+            <option value=">">より大きい</option>
+            <option value="<">より小さい</option>
         </select>
       なら</span>
       <div data-scratch="if-comands-wrapper" draggable="true" data-scratch-type="command-wrapper-block" class="scratch-block-if-commands"></div>
@@ -118,25 +119,32 @@
     </div>
   <div draggable="true" data-scratch-type="command-block">
   <div data-scratch-type="command-block-expression">
-    <select name="" id="">
-      <option value="">件名に</option>
-      <option value="">件名の先頭に</option>
-      <option value="">件名の末尾に</option>
-      <option value="">本文に</option>
-      <option value="">本文の先頭に</option>
-      <option value="">本文の末尾に</option>
+    <select name="" value="" id="">
+      <option value="sub">件名に</option>
+      <option value="body">本文に</option>
+      <option value="_body">本文の先頭に</option>
+      <option value="body_">本文の末尾に</option>
     </select>
-    <div id="detail">
-    </div>
+    <div class="summer-container">本日は・・・・・</div>
     を入力
   </div>
   </div>
   <button id="build-btn">
     Execute!
   </button>
+  <button onclick=""></button>
   </div>
+<!--
+  <div id="summernote">
+  </div>
+  <button id="create">作成</button>
   <script>
-    $("#detail").summernote();
-  </script>
+  $(document).ready(function(){
+    $("#summernote").summernote();
+    $("#create").on('click',function(){
+      $(".summer-container").html($("#summernote").val());
+    })
+  })
+  </script> -->
 </body>
 </html>

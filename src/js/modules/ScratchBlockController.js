@@ -6,6 +6,7 @@ export default class ScratchBlockController {
 
   dragStartHandler(event) {
     let dragElement = event.target;
+    
     switch(dragElement.getAttribute('data-scratch-type')) {
       case null:
         return;

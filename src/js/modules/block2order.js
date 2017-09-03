@@ -5,8 +5,9 @@
     |- operator       <string> : comparison operator
     |- contable       <boolean>: is the left side variable countable?
  */
-function call_state(call_function) {
-  r_side = call_function.r_side, l_side = call_function.l_side;
+export default function call_state(call_function) {
+  let r_side = call_function.r_side,
+  l_side = call_function.l_side;
 
   if (call_function.state === "if") {
     switch (call_function.operator) {
@@ -49,11 +50,3 @@ function call_state(call_function) {
     }
   }
 }
-
-/* to translate <type>, if necessary */
-// $.data(element, key, value); /* to get $.data */
-/* assigned to the object of `call_function` */
-call_function = new Object();
-// $.atter(, , call_function.state);
-
-console.log(call_state(call_function));

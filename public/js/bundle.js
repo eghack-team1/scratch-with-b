@@ -75,7 +75,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
+
+
+var _$_to_$_ = "";
 window.onload = ()=>{
+
   let sbctrl = new __WEBPACK_IMPORTED_MODULE_0__modules_ScratchBlockController__["a" /* default */];
   Array.prototype.forEach.call(sbctrl.items,(item)=>{
       item.addEventListener('dragstart',sbctrl.dragStartHandler);
@@ -102,6 +106,7 @@ class ScratchBlockController {
 
   dragStartHandler(event) {
     let dragElement = event.target;
+    
     switch(dragElement.getAttribute('data-scratch-type')) {
       case null:
         return;
@@ -195,6 +200,9 @@ function replace_sentence(text){
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = parseBlock2Order;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__block2order__ = __webpack_require__(4);
+
+
 function parseBlock2Order(){
   let trg = document.getElementById('target');
   let children = trg.childNodes;
@@ -220,13 +228,12 @@ function selectBlockAction(block,result=[]){
       commands = getScratchChildNodeList(block);
       for(let i = 0;i<commands.length;i++){
         result.push({
-            if:{
+          if:{
               lhs:null,
               rhs:null,
               operator:null
           }
         });
-
         let exps = getScratchChildNodeList(commands[i].block);
         for(let j = 0;j<exps.length;j++){
           console.log(exps[j]);
@@ -244,11 +251,101 @@ function selectBlockAction(block,result=[]){
       break;
     case 'if-exprssion-operator':
       result.if.operator = block.childNodes[1].value;
-      console.log(result)
+      let call_function = new Object();
+      call_function.state = 'if';
+      call_function.l_side = result.if.lhs;
+      call_function.r_side = result.if.rhs;
+      call_function.operator = result.if.operator;
+      console.log("if expression")
+      console.log(block.parentNode.parentNode.children[1])
+      if(Object(__WEBPACK_IMPORTED_MODULE_0__block2order__["a" /* default */])(call_function))
+        selectBlockAction(block.parentNode.parentNode.children[1],result);
+      break;
+    case 'command-wrapper-block':
+      //console.log(block.children[0].children[0].children[0].value);
+      if(block.children[0].children[0].children[0].value == 'body'){
+          _$_body_$_ = document.getElementsByClassName('summer-container')[0].innerHTML;
+        }else if(block.children[0].children[0].children[0].value == '_body'){
+          _$_body_$_ = $(".scratch-block-if-commands #detail").val()+_$_body_$_;
+        }else if(block.children[0].children[0].children[0].value == 'body_'){
+          _$_body_$_ = _$_body_$_ + $(".scratch-block-if-commands .summernote").val();
+        }else if(block.children[0].children[0].children[0].value == 'sub'){
+          _$_subject_$_ = document.getElementsByClassName('summer-container')[0].innerHTML;
+        }else{
+          console.error("unmatch option value");
+      }
+      console.log("Execute!");
+      $.ajax({
+        url:'http://localhost:8888/scratch-with-b/server/mail.php',
+        type:'post',
+        data:{to:"test.scratch..with.b@gmail.com",subject:_$_subject_$_,body:_$_body_$_}
+      }).done(()=>{
+        console.log("success")
+      })
       break;
     default:
       return result;
       break;
+  }
+}
+
+
+/***/ }),
+/* 4 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = call_state;
+/**
+  call_function
+    |- state          <string> : block state
+    |- l_side, r_side <object> : left and right side variable
+    |- operator       <string> : comparison operator
+    |- contable       <boolean>: is the left side variable countable?
+ */
+function call_state(call_function) {
+  let r_side = call_function.r_side,
+  l_side = call_function.l_side;
+
+  if (call_function.state === "if") {
+    switch (call_function.operator) {
+      case "==":
+        return (l_side === r_side ? true : false);
+        break;
+      case ">":
+        return (l_side > r_side ? true : false);
+        break;
+      case "<":
+        return (l_side < r_side ? true : false);
+        break;
+      case ">=":
+        return (l_side >= r_side ? true : false);
+        break;
+      case "<=":
+        return (l_side <= r_side ? true : false);
+        break;
+      default: /* just in case ... */
+        console.warn("illegal operator :(");
+        return false;
+    }
+  }
+
+  if (call_function.state === "loop") {
+    if (call_function.contable === true) {
+      /* countable -> for loop */
+      for (var i = 0; i < l_side.length; i++) {
+        console.log(l_side[i]);
+        // document.write(l_side[i]);
+      }
+    } else {
+      /* uncountable -> while loop */
+      call_function.state = "if";
+      while (!call_state(call_function)) {
+        call_function.l_side += 1;
+        console.log(call_function.l_side);
+        // document.write(l_side[i]);
+      }
+    }
   }
 }
 

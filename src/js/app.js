@@ -1,7 +1,11 @@
 import ScratchBlockController from './modules/ScratchBlockController';
 import replace_sentence from './modules/templete_engine';
 import parseBlock2Order from './modules/parseBlock2Order'
+
+
+var _$_to_$_ = "";
 window.onload = ()=>{
+
   let sbctrl = new ScratchBlockController;
   Array.prototype.forEach.call(sbctrl.items,(item)=>{
       item.addEventListener('dragstart',sbctrl.dragStartHandler);
