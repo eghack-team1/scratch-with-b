@@ -55,7 +55,7 @@ export var con = [
 
 var checktext = "___tri___。\n___ltd___の___name___です。\n";
 
-//テキスト置換操作 関数としてはテキストとuserid必要？
+//テキスト置換操作 関数としてはテキストとuserid必要
 
 export default function replace_sentence(text) {
     let checktext = text;
