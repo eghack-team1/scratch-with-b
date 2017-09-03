@@ -29,7 +29,6 @@ function selectBlockAction(block,result=[]){
               operator:null
           }
         });
-
         let exps = getScratchChildNodeList(commands[i].block);
         for(let j = 0;j<exps.length;j++){
           console.log(exps[j]);
@@ -47,7 +46,7 @@ function selectBlockAction(block,result=[]){
       break;
     case 'if-exprssion-operator':
       result.if.operator = block.childNodes[1].value;
-      console.log(result)
+      console.log(result);
       break;
     default:
       return result;
