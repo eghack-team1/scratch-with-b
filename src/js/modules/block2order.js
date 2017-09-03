@@ -1,9 +1,9 @@
 /**
- * call_function
- *  |- state          <string> : block state
- *  |- l_side, r_side <object> : left and right side variable
- *  |- operator       <string> : comparison operator
- *  |- contable       <boolean>: is the left side variable countable?
+  call_function
+    |- state          <string> : block state
+    |- l_side, r_side <object> : left and right side variable
+    |- operator       <string> : comparison operator
+    |- contable       <boolean>: is the left side variable countable?
  */
 function call_state(call_function) {
   r_side = call_function.r_side, l_side = call_function.l_side;
@@ -52,5 +52,8 @@ function call_state(call_function) {
 
 /* to translate <type>, if necessary */
 // $.data(element, key, value); /* to get $.data */
+/* assigned to the object of `call_function` */
 call_function = new Object();
-call_state(call_function)
+// $.atter(, , call_function.state);
+
+console.log(call_state(call_function));
