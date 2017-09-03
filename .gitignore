@@ -1,3 +1,4 @@
+
 ### macOS ###
 *.DS_Store
 .AppleDouble
@@ -43,3 +44,7 @@ tags
 
 ### webpack ###
 public/*
+node_modules/
+public/index.html
+public/js/bundle.js
+
