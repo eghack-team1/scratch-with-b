@@ -5,6 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src="./js/bundle.js" ></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.7/summernote.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.7/summernote.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.7/lang/summernote-ja-JP.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.7/font/summernote.ttf"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.7/font/summernote.woff"></script>
   <title>Document</title>
   <style>
   #target{
@@ -55,6 +63,17 @@
     box-shadow: -1px -1px 1px 1px rgba(0,0,0,0.4) inset;
     border-radius: 10px;
   }
+  input[type="text"]{
+    min-width:32px;
+    width:2em;
+    appearance:none;
+    border:none;
+    display: inline!important;
+    background-color:white;
+    box-shadow: -1px -1px 1px 1px rgba(0,0,0,0.4) inset;
+    border-radius: 10px;
+    height:32px;
+  }
   </style>
   <script>
 
@@ -63,18 +82,29 @@
 <body>
   <div data-scratch-type="box" draggable="true" id="target">
     <div draggable="true" data-scratch-type="statement-block-if" data-scratch="if-wrapper" class="scratch-block-if-wrapper">
-      <span data-scratch="if-statement" class="scratch-block-if-statement">もし<span data-scratch="if-statement-lhs" data-scratch-type="box" draggable="true" class="scratch-block-if-statement-lhs">&nbsp;</span>が<span data-scratch="if-statement-rhs" draggable="true" data-scratch-type="box" class="scratch-block-if-statement-lhs">&nbsp;</span><select name="" id="">
-        <option value="">と等しい</option>
-        <option value="">より大きい</option>
-        <option value="">より小さい</option>
-      </select>なら</span>
+      <span data-scratch="if-statement" data-scratch-type="if-expression" class="scratch-block-if-statement">もし<span data-scratch="if-statement-lhs" data-scratch-type="if-expression-lhs" draggable="true" class="scratch-block-if-statement-lhs">    <select draggable="true" data-scratch="variable-list" data-scratch-type="value-block-variable">
+            <option draggable="true" data-scratch-type="variable">名前</option>
+            <option draggable="true" data-scratch-type="variable">性別</option>
+            <option draggable="true" data-scratch-type="variable">会社フラグ</option>
+            <option draggable="true" data-scratch-type="variable">年齢</option>
+          </select></span>が<span data-scratch="if-statement-rhs" draggable="true" data-scratch-type="if-expression-rhs" class="scratch-block-if-statement-lhs"><input type="text" name="" id=""></span>
+          <select name="" id="" data-scratch-type="if-exprssion-operator">
+            <option>と等しい</option>
+            <option>と等しくない</option>
+            <option>より大きい</option>
+            <option>より小さい</option>
+        </select>
+      なら</span>
       <div data-scratch="if-comands-wrapper" draggable="true" data-scratch-type="command-wrapper-block" class="scratch-block-if-commands"></div>
     </div>
   </div>
   <div data-scratch-type="workspace" id="workspace">
-    <ul data-scratch="variable-list" data-scratch-type="value-block-variable">
-      <li draggable="true" data-scratch-type="variable">user</li>
-    </ul>
+    <select draggable="true" data-scratch="variable-list" data-scratch-type="value-block-variable">
+      <option draggable="true" data-scratch-type="variable">名前</option>
+      <option draggable="true" data-scratch-type="variable">性別</option>
+      <option draggable="true" data-scratch-type="variable">会社フラグ</option>
+      <option draggable="true" data-scratch-type="variable">年齢</option>
+    </select>
     <div draggable="true" data-scratch-type="statement-block-if" data-scratch="if-wrapper" class="scratch-block-if-wrapper">
       <span data-scratch="if-statement" class="scratch-block-if-statement">もし<span data-scratch="if-statement-lhs" data-scratch-type="box" draggable="true" class="scratch-block-if-statement-lhs">&nbsp;</span>が<span data-scratch="if-statement-rhs" draggable="true" data-scratch-type="box" class="scratch-block-if-statement-lhs">&nbsp;</span>なら</span>
       <div data-scratch="if-comands-wrapper" draggable="true" data-scratch-type="command-wrapper-block" class="scratch-block-if-commands">
@@ -87,8 +117,26 @@
       </div>
     </div>
   <div draggable="true" data-scratch-type="command-block">
-
+  <div data-scratch-type="command-block-expression">
+    <select name="" id="">
+      <option value="">件名に</option>
+      <option value="">件名の先頭に</option>
+      <option value="">件名の末尾に</option>
+      <option value="">本文に</option>
+      <option value="">本文の先頭に</option>
+      <option value="">本文の末尾に</option>
+    </select>
+    <div id="detail">
+    </div>
+    を入力
   </div>
   </div>
+  <button id="build-btn">
+    Execute!
+  </button>
+  </div>
+  <script>
+    $("#detail").summernote();
+  </script>
 </body>
 </html>

@@ -70,6 +70,9 @@
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_ScratchBlockController__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_templete_engine__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_parseBlock2Order__ = __webpack_require__(3);
+
 
 
 window.onload = ()=>{
@@ -78,6 +81,9 @@ window.onload = ()=>{
       item.addEventListener('dragstart',sbctrl.dragStartHandler);
       item.addEventListener('dragover',sbctrl.dragOverHandler);
       item.addEventListener('drop',sbctrl.dropHandler);
+  });
+  document.getElementById('build-btn').addEventListener('click',()=>{
+    Object(__WEBPACK_IMPORTED_MODULE_2__modules_parseBlock2Order__["a" /* default */])();
   });
 }
 
@@ -141,6 +147,110 @@ class ScratchBlockController {
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = ScratchBlockController;
 
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* unused harmony export users */
+/* unused harmony export default */
+
+
+//var code = ["___age___","___ShopName___","___Name___","___ID___"];
+
+//ユーザーデータ仮置き
+var users =[
+        {
+          id:1,
+          Name:"Sudo",
+          age:21,
+          sex:"man",
+          ShopName:"ion"
+        },
+        {
+          id:2,
+          name:"Sususu",
+          age:23,
+          sex:"man",
+          shopname:"kinokuni"
+        }
+    ];
+
+//テキスト置換操作 関数としてはテキストとuserid必要？
+
+function replace_sentence(text){
+  let checktext = text;
+  for(let prop in users[0]){
+    checktext = checktext.replace(new RegExp(`___${prop}___`),users[0][`${prop}`]);
+  }
+  return checktext;
+}
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = parseBlock2Order;
+function parseBlock2Order(){
+  let trg = document.getElementById('target');
+  let children = trg.childNodes;
+  let commands = getScratchChildNodeList(trg);
+  console.log(commands);
+  for(let i = 0; i < commands.length; i++){
+    selectBlockAction(commands[i].block);
+  }
+}
+function getScratchChildNodeList(parent){
+  let children = parent.children;
+  let commands = [];
+  for(let i = 0; i < children.length; i++){
+    commands.push({block:children[i]});
+  }
+  return commands;
+}
+function selectBlockAction(block,result=[]){
+  let commands = [];
+  switch (block.getAttribute('data-scratch-type')){
+    case 'statement-block-if':
+    case 'if-expression':
+      commands = getScratchChildNodeList(block);
+      for(let i = 0;i<commands.length;i++){
+        result.push({
+            if:{
+              lhs:null,
+              rhs:null,
+              operator:null
+          }
+        });
+
+        let exps = getScratchChildNodeList(commands[i].block);
+        for(let j = 0;j<exps.length;j++){
+          console.log(exps[j]);
+          selectBlockAction(exps[j].block,result[i]);
+        }
+      }
+      break;
+    case 'if-expression-lhs':
+      result.if.lhs = block.childNodes[1].value;
+      console.log(result)
+      break;
+    case 'if-expression-rhs':
+      result.if.rhs = block.childNodes[0].value;
+      console.log(result)
+      break;
+    case 'if-exprssion-operator':
+      result.if.operator = block.childNodes[1].value;
+      console.log(result)
+      break;
+    default:
+      return result;
+      break;
+  }
+}
 
 
 /***/ })
